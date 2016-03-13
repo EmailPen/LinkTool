@@ -46,8 +46,6 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -58,91 +56,106 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	/**
+	 * Created by ychai on 2016/2/16.
+	 */
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var DataInput = _react2.default.createClass({
+	  displayName: 'DataInput',
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by ychai on 2016/2/16.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	var ButtonConvert = function (_React$Component) {
-	    _inherits(ButtonConvert, _React$Component);
-
-	    function ButtonConvert() {
-	        _classCallCheck(this, ButtonConvert);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ButtonConvert).apply(this, arguments));
+	  getInitialState: function getInitialState() {
+	    return {
+	      code: '',
+	      aliasInput: '',
+	      showCodeTextAreaError: false,
+	      showAliasTextAreaError: false
+	    };
+	  },
+	  dataValidate: function dataValidate(e) {
+	    if (this.state.code == '' && this.state.aliasInput == '') {
+	      alert("Both code and alias area can't be null!");
+	      e.preventDefault();
+	      return;
 	    }
-
-	    _createClass(ButtonConvert, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'button',
-	                { type: 'submit', className: 'btn btn-default' },
-	                'Submit'
-	            );
-	        }
-	    }]);
-
-	    return ButtonConvert;
-	}(_react2.default.Component);
-
-	var DataInput = function (_React$Component2) {
-	    _inherits(DataInput, _React$Component2);
-
-	    function DataInput() {
-	        _classCallCheck(this, DataInput);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DataInput).apply(this, arguments));
+	    if (this.state.code == '') {
+	      alert("Code area can't be null!");
+	      e.preventDefault();
 	    }
-
-	    _createClass(DataInput, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'form',
-	                { action: '' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'form-group col-sm-7 col-xs-12' },
-	                        _react2.default.createElement(
-	                            'label',
-	                            { htmlFor: 'code' },
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'Paste your email code below'
-	                            )
-	                        ),
-	                        _react2.default.createElement('textarea', { className: 'form-control', name: 'code', id: 'code', cols: '30', rows: '30' })
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'form-group col-sm-5 col-xs-12' },
-	                        _react2.default.createElement(
-	                            'label',
-	                            { htmlFor: 'alias' },
-	                            _react2.default.createElement(
-	                                'h3',
-	                                null,
-	                                'Paste your alias from CWS to below'
-	                            )
-	                        ),
-	                        _react2.default.createElement('textarea', { className: 'form-control', name: 'alias', id: 'alias', cols: '30', rows: '30' })
-	                    )
-	                ),
-	                _react2.default.createElement(ButtonConvert, null)
-	            );
-	        }
-	    }]);
-
-	    return DataInput;
-	}(_react2.default.Component);
+	    if (this.state.aliasInput == '') {
+	      alert("Alias area can't be null!");
+	      e.preventDefault();
+	    }
+	  },
+	  handleCodeChange: function handleCodeChange(e) {
+	    this.setState({ code: e.target.value });
+	    if (e.target.value) {
+	      this.setState({ showCodeTextAreaError: false });
+	    } else {
+	      this.setState({ showCodeTextAreaError: true });
+	    }
+	  },
+	  handleAliasInputChange: function handleAliasInputChange(e) {
+	    this.setState({ aliasInput: e.target.value });
+	    if (e.target.value) {
+	      this.setState({ showAliasTextAreaError: false });
+	    } else {
+	      this.setState({ showAliasTextAreaError: true });
+	    }
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'form',
+	      { action: '', onSubmit: this.dataValidate },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-group col-sm-7 col-xs-12' },
+	          _react2.default.createElement(
+	            'label',
+	            { htmlFor: 'code' },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Paste your email code below ',
+	              this.state.showCodeTextAreaError ? _react2.default.createElement(
+	                'span',
+	                { className: 'text-danger' },
+	                '(This area can\'t be empty.)'
+	              ) : null
+	            )
+	          ),
+	          _react2.default.createElement('textarea', { className: 'form-control', name: 'code', id: 'code', cols: '30', rows: '30', onChange: this.handleCodeChange, value: this.state.code })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-group col-sm-5 col-xs-12' },
+	          _react2.default.createElement(
+	            'label',
+	            { htmlFor: 'alias' },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Paste your alias from CWS to below ',
+	              this.state.showAliasTextAreaError ? _react2.default.createElement(
+	                'span',
+	                { className: 'text-danger' },
+	                '(This area can\'t be empty.)'
+	              ) : null
+	            )
+	          ),
+	          _react2.default.createElement('textarea', { className: 'form-control', name: 'alias', id: 'alias', cols: '30', rows: '30', onChange: this.handleAliasInputChange, value: this.state.aliasInput })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        { type: 'submit', className: 'btn btn-default' },
+	        'Submit'
+	      )
+	    );
+	  }
+	});
 
 	_reactDom2.default.render(_react2.default.createElement(DataInput, null), document.getElementById('container'));
 
