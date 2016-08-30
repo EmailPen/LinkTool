@@ -1,0 +1,29 @@
+{
+  "name": "linktool",
+  "version": "1.0.0",
+  "description": "A tool that helps with changing link attributes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmailPen/linktool.git"
+  },
+  "keywords": [],
+  "author": "yxchai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmailPen/linktool/issues"
+  },
+  "homepage": "https://github.com/EmailPen/linktool#readme",
+  "dependencies": {
+    "consolidate": "^0.14.1",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  }
+}
