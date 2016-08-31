@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/EmailPen/linktool#readme",
   "dependencies": {
-    "consolidate": "^0.14.1",
     "express": "^4.14.0",
-    "handlebars": "^4.0.5"
+    "hbs": "^4.0.0",
+    "lodash": "^4.15.0"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"

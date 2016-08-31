@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm">
+    <table class="table table-sm table-striped">
+      {{#each linkdata}}
+      {{#unless @index}}
+      <tr>
+        <td></td>
+        {{#each this}}
+        <td>
+          <input type="checkbox" name="col-{{@index}}" id="col-{{@index}}" />
+        </td>
+        {{/each}}
+      </tr>
+      {{/unless}}
+      <tr>
+        <td><input type="checkbox" name="row-{{@../index}}" id="row-{{@../index}}" /></td>
+        {{#each this}}
+        {{#unless @../index}}
+        <th>{{this}}</th>
+        {{else}}
+        <td>{{this}}</td>
+        {{/unless}}
+        {{/each}}
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+</div>
