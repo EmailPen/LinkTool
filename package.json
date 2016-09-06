@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/EmailPen/linktool#readme",
   "dependencies": {
+    "csv": "^1.1.0",
     "express": "^4.14.0",
     "hbs": "^4.0.0",
     "lodash": "^4.15.0"
