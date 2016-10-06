@@ -8,7 +8,11 @@ router.get('/', function (req, res) {
 
 router.post('/selectToDispose', function (req, res) {
   linkParser(req.body.linkInfo, function (data) {
-    res.render('linktool/selectToDispose', {title: 'Link Tool - Select the row or column you don\'t want', linkdata: data});
+    res.render('linktool/selectToDispose', {
+      title: 'Link Tool - Select the row or column you don\'t want',
+      linkdata: data,
+      dataBox: JSON.stringify(data)
+    });
   })
 });
 

@@ -1,5 +1,55 @@
 <div class="row">
   <div class="col-sm">
+    <h1>
+      Please select the row and cell that you need. 
+    </h1>
+  </div>
+</div>
+<div class="row" id="filter">
+  <div class="col-sm">
+    <p class="bg-warning" v-if="errorMsg">
+      \{{errorMsg}}
+    </p>
+    <form action="#" class="form-inline">
+
+      <table class="table table-sm table-striped table-responsive">
+        <tbody>
+          <template v-for="(row, index) in linkdata">
+            <tr v-if="index == 0">
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td v-for="cellCheck in cellChecks">
+                <div class="form-group">
+                  <label class="custom-control custom-checkbox">
+                    <input type="checkbox" :name="cellCheck.id" v-model="cellCheck.checked" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    Select
+                  </label>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label class="custom-control custom-checkbox">
+                    <input type="checkbox" :name="rowChecks[index].id" v-model="rowChecks[index].checked" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    Select
+                  </label>
+                </div>
+              </td>
+              <td v-for="(cell, cellIndex) in row" :class="{lt_cell_deselected: !cellChecks[cellIndex].checked | !rowChecks[index].checked}">
+                \{{cell}}
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+
+{{!-- <div class="row">
+  <div class="col-sm">
     <table class="table table-sm table-striped">
       {{#each linkdata}}
       {{#unless @index}}
@@ -26,3 +76,9 @@
     </table>
   </div>
 </div>
+ --}}
+<script>
+  var linkdata = {{{dataBox}}};
+  // console.log(linkdata);
+</script>
+<script src="/static/js/linktool/main.js"></script>
